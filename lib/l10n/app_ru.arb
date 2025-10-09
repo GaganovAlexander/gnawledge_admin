@@ -1,0 +1,18 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Админка",
+  "login_title": "Вход в админ-панель",
+  "login_subtitle": "Введите учётные данные для доступа",
+  "email_label": "Email",
+  "email_hint": "admin@example.com",
+  "password_label": "Пароль",
+  "password_hint": "Ваш пароль",
+  "forgot_password": "Забыли пароль?",
+  "sign_in": "Войти",
+  "lang_en": "English",
+  "lang_ru": "Русский",
+  "change_language": "Сменить язык",
+  "validation_email": "Введите корректный email",
+  "validation_password": "Введите пароль",
+  "validation_invalid_credentials": "Неверный email или пароль"
+}
