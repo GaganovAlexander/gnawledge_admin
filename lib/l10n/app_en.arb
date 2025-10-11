@@ -1,23 +1,50 @@
 {
   "@@locale": "en",
   "appTitle": "Admin",
+  "@appTitle": {},
   "login_title": "Admin Panel Login",
+  "@login_title": {},
   "login_subtitle": "Enter your credentials to access the admin panel",
+  "@login_subtitle": {},
   "email_label": "Email",
+  "@email_label": {},
   "email_hint": "admin@example.com",
+  "@email_hint": {},
   "password_label": "Password",
+  "@password_label": {},
   "password_hint": "Your password",
+  "@password_hint": {},
   "forgot_password": "Forgot password?",
+  "@forgot_password": {},
   "sign_in": "Sign In",
+  "@sign_in": {},
   "lang_en": "English",
+  "@lang_en": {},
   "lang_ru": "Русский",
+  "@lang_ru": {},
   "change_language": "Change language",
+  "@change_language": {},
   "validation_email": "Enter a valid email",
+  "@validation_email": {},
   "validation_password": "Enter your password",
+  "@validation_password": {},
   "validation_invalid_credentials": "Incorrect email or password",
+  "@validation_invalid_credentials": {},
   "forgot_title": "Reset Password",
+  "@forgot_title": {},
   "forgot_subtitle": "Enter your email address and we'll send you a link to reset your password",
+  "@forgot_subtitle": {},
   "send_reset_link": "Send Reset Link",
+  "@send_reset_link": {},
   "back_to_login": "Back to Login",
-  "forgot_confirmation": "If an account exists with {email}, you will receive a password reset link shortly."
+  "@back_to_login": {},
+  "forgot_confirmation": "If an account exists with {email}, you will receive a password reset link shortly.",
+  "@forgot_confirmation": {
+    "placeholders": {
+      "email": {
+        "type": "String",
+        "example": "user@example.com"
+      }
+    }
+  }
 }

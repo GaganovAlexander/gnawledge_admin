@@ -1,23 +1,50 @@
 {
   "@@locale": "ru",
   "appTitle": "Админка",
+  "@appTitle": {},
   "login_title": "Вход в админ-панель",
+  "@login_title": {},
   "login_subtitle": "Введите учётные данные для доступа",
+  "@login_subtitle": {},
   "email_label": "Email",
+  "@email_label": {},
   "email_hint": "admin@example.com",
+  "@email_hint": {},
   "password_label": "Пароль",
+  "@password_label": {},
   "password_hint": "Ваш пароль",
+  "@password_hint": {},
   "forgot_password": "Забыли пароль?",
+  "@forgot_password": {},
   "sign_in": "Войти",
+  "@sign_in": {},
   "lang_en": "English",
+  "@lang_en": {},
   "lang_ru": "Русский",
+  "@lang_ru": {},
   "change_language": "Сменить язык",
+  "@change_language": {},
   "validation_email": "Введите корректный email",
+  "@validation_email": {},
   "validation_password": "Введите пароль",
+  "@validation_password": {},
   "validation_invalid_credentials": "Неверный email или пароль",
+  "@validation_invalid_credentials": {},
   "forgot_title": "Сброс пароля",
+  "@forgot_title": {},
   "forgot_subtitle": "Введите ваш email, и мы отправим ссылку для сброса пароля",
+  "@forgot_subtitle": {},
   "send_reset_link": "Отправить ссылку",
+  "@send_reset_link": {},
   "back_to_login": "Назад ко входу",
-  "forgot_confirmation": "Если аккаунт с адресом {email} существует, на него вскоре придёт письмо со ссылкой для сброса."
+  "@back_to_login": {},
+  "forgot_confirmation": "Если аккаунт с адресом {email} существует, на него вскоре придёт письмо со ссылкой для сброса.",
+  "@forgot_confirmation": {
+    "placeholders": {
+      "email": {
+        "type": "String",
+        "example": "user@example.com"
+      }
+    }
+  }
 }
