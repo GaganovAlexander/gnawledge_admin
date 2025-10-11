@@ -1,4 +1,4 @@
-# Beavers Admin 🦫
+# Gnawledge Admin 🦫
 
 Flutter Web admin panel built with Clean Architecture and Riverpod.
 

@@ -5,15 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gnawledge_admin/app/di.dart';
 import 'package:gnawledge_admin/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:gnawledge_admin/features/auth/presentation/pages/login_page.dart';
-import 'package:gnawledge_admin/shared/widgets/sidebar.dart';
+import 'package:gnawledge_admin/shared/layout/app_shell.dart';
+import 'package:gnawledge_admin/shared/pages/placeholder_page.dart';
 import 'package:go_router/go_router.dart';
-
-class _PlaceholderPage extends StatelessWidget {
-  const _PlaceholderPage({required this.title});
-  final String title;
-  @override
-  Widget build(BuildContext context) => Center(child: Text(title));
-}
 
 final routerProvider = Provider<GoRouter>((ref) {
   final repo = ref.read(authRepositoryProvider);
@@ -56,38 +50,24 @@ final routerProvider = Provider<GoRouter>((ref) {
             const NoTransitionPage(child: ForgotPasswordPage()),
       ),
       ShellRoute(
-        builder: (context, state, child) {
-          return Scaffold(
-            body: Row(
-              children: [
-                const Sidebar(),
-                Expanded(
-                  child: ColoredBox(
-                    color: const Color(0xFFF7F7FB),
-                    child: child,
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
+        builder: (context, state, child) => AppShell(child: child),
         routes: [
           GoRoute(
             path: '/dashboard',
             pageBuilder: (c, s) => const NoTransitionPage(
-              child: _PlaceholderPage(title: 'Dashboard'),
+              child: PlaceholderPage(titleKey: 'nav_dashboard'),
             ),
           ),
           GoRoute(
             path: '/users',
             pageBuilder: (c, s) => const NoTransitionPage(
-              child: _PlaceholderPage(title: 'Users'),
+              child: PlaceholderPage(titleKey: 'nav_users'),
             ),
           ),
           GoRoute(
             path: '/settings',
             pageBuilder: (c, s) => const NoTransitionPage(
-              child: _PlaceholderPage(title: 'Settings'),
+              child: PlaceholderPage(titleKey: 'nav_settings'),
             ),
           ),
         ],
