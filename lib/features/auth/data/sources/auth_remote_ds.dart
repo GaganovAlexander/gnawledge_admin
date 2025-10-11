@@ -31,4 +31,9 @@ class AuthRemoteDataSource implements AuthDataSource {
       refresh: d['refresh_token'] as String,
     );
   }
+
+  @override
+  Future<void> requestPasswordReset(String email) async {
+    await _dio.post<void>('/auth/password/reset', data: {'email': email});
+  }
 }

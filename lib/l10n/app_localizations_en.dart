@@ -52,4 +52,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get validation_invalid_credentials => 'Incorrect email or password';
+
+  @override
+  String get forgot_title => 'Reset Password';
+
+  @override
+  String get forgot_subtitle => 'Enter your email address and we\'ll send you a link to reset your password';
+
+  @override
+  String get send_reset_link => 'Send Reset Link';
+
+  @override
+  String get back_to_login => 'Back to Login';
+
+  @override
+  String forgot_confirmation(Object email) {
+    return 'If an account exists with $email, you will receive a password reset link shortly.';
+  }
 }

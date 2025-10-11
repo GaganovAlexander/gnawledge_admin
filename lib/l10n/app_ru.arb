@@ -14,5 +14,10 @@
   "change_language": "Сменить язык",
   "validation_email": "Введите корректный email",
   "validation_password": "Введите пароль",
-  "validation_invalid_credentials": "Неверный email или пароль"
+  "validation_invalid_credentials": "Неверный email или пароль",
+  "forgot_title": "Сброс пароля",
+  "forgot_subtitle": "Введите ваш email, и мы отправим ссылку для сброса пароля",
+  "send_reset_link": "Отправить ссылку",
+  "back_to_login": "Назад ко входу",
+  "forgot_confirmation": "Если аккаунт с адресом {email} существует, на него вскоре придёт письмо со ссылкой для сброса."
 }

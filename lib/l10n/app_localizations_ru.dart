@@ -52,4 +52,21 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get validation_invalid_credentials => 'Неверный email или пароль';
+
+  @override
+  String get forgot_title => 'Сброс пароля';
+
+  @override
+  String get forgot_subtitle => 'Введите ваш email, и мы отправим ссылку для сброса пароля';
+
+  @override
+  String get send_reset_link => 'Отправить ссылку';
+
+  @override
+  String get back_to_login => 'Назад ко входу';
+
+  @override
+  String forgot_confirmation(Object email) {
+    return 'Если аккаунт с адресом $email существует, на него вскоре придёт письмо со ссылкой для сброса.';
+  }
 }

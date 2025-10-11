@@ -135,6 +135,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         final ok = RegExp(r'^[^@]+@[^@]+\.[^@]+$').hasMatch(s);
         return ok ? null : t.validation_email;
       },
+      textInputAction: TextInputAction.next,
     );
   }
 

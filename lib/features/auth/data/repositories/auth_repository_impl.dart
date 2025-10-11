@@ -41,4 +41,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   bool isAccessValid() => isAccessTokenValid(tokens.readAccess());
+
+  @override
+  Future<void> requestPasswordReset(String email) async {
+    await _ds.requestPasswordReset(email);
+  }
 }

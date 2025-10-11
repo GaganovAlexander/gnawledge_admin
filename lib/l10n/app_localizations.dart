@@ -184,6 +184,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Incorrect email or password'**
   String get validation_invalid_credentials;
+
+  /// No description provided for @forgot_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get forgot_title;
+
+  /// No description provided for @forgot_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address and we\'ll send you a link to reset your password'**
+  String get forgot_subtitle;
+
+  /// No description provided for @send_reset_link.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Reset Link'**
+  String get send_reset_link;
+
+  /// No description provided for @back_to_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Login'**
+  String get back_to_login;
+
+  /// No description provided for @forgot_confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'If an account exists with {email}, you will receive a password reset link shortly.'**
+  String forgot_confirmation(Object email);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

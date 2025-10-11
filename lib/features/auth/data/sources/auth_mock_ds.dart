@@ -30,4 +30,9 @@ class AuthMockDataSource implements AuthDataSource {
       refresh: 'mock_refresh_admin_456',
     );
   }
+
+  @override
+  Future<void> requestPasswordReset(String email) async {
+    await Future<void>.delayed(const Duration(milliseconds: 500));
+  }
 }

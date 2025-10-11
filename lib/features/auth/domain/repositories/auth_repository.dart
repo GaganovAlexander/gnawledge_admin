@@ -7,4 +7,5 @@ abstract class AuthRepository {
   String? currentAccess();
   String? currentRefresh();
   bool isAccessValid();
+  Future<void> requestPasswordReset(String email);
 }

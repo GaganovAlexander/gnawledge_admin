@@ -14,5 +14,10 @@
   "change_language": "Change language",
   "validation_email": "Enter a valid email",
   "validation_password": "Enter your password",
-  "validation_invalid_credentials": "Incorrect email or password"
+  "validation_invalid_credentials": "Incorrect email or password",
+  "forgot_title": "Reset Password",
+  "forgot_subtitle": "Enter your email address and we'll send you a link to reset your password",
+  "send_reset_link": "Send Reset Link",
+  "back_to_login": "Back to Login",
+  "forgot_confirmation": "If an account exists with {email}, you will receive a password reset link shortly."
 }

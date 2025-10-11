@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gnawledge_admin/app/di.dart';
+import 'package:gnawledge_admin/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:gnawledge_admin/features/auth/presentation/pages/login_page.dart';
 import 'package:go_router/go_router.dart';
 
 class _HomeStub extends StatelessWidget {
   const _HomeStub();
-
   @override
   Widget build(BuildContext context) => const SizedBox.shrink();
 }
@@ -16,28 +16,34 @@ class _HomeStub extends StatelessWidget {
 final routerProvider = Provider<GoRouter>((ref) {
   final repo = ref.read(authRepositoryProvider);
 
+  const publicPaths = <String>[
+    '/login',
+    '/forgot-password',
+  ];
+
+  bool isPublic(String loc) => publicPaths.any((p) => loc.startsWith(p));
+
   FutureOr<String?> guard(BuildContext context, GoRouterState state) async {
-    final isOnLogin = state.matchedLocation.startsWith('/login');
+    final loc = state.matchedLocation;
 
     if (repo.isAccessValid()) {
-      if (isOnLogin) return '/';
+      if (isPublic(loc)) return '/';
       return null;
     }
+
+    if (isPublic(loc)) return null;
 
     final refresh = repo.currentRefresh();
     if (refresh != null && refresh.isNotEmpty) {
       try {
         await repo.refresh(refresh);
-        if (isOnLogin) return '/';
+
         return null;
       } catch (_) {}
     }
 
-    if (!isOnLogin) {
-      final from = Uri.encodeComponent(state.uri.toString());
-      return '/login?from=$from';
-    }
-    return null;
+    final from = Uri.encodeComponent(state.uri.toString());
+    return '/login?from=$from';
   }
 
   return GoRouter(
@@ -53,6 +59,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/login',
         pageBuilder: (context, state) =>
             const NoTransitionPage(child: LoginPage()),
+      ),
+      GoRoute(
+        path: '/forgot-password',
+        pageBuilder: (context, state) =>
+            const NoTransitionPage(child: ForgotPasswordPage()),
       ),
     ],
   );
