@@ -46,5 +46,29 @@
         "example": "user@example.com"
       }
     }
-  }
+  },
+  "brand_title": "Admin Panel",
+  "@brand_title": {},
+  "nav_dashboard": "Dashboard",
+  "@nav_dashboard": {},
+  "nav_users": "Users",
+  "@nav_users": {},
+  "nav_settings": "Settings",
+  "@nav_settings": {},
+  "my_account": "My Account",
+  "@my_account": {},
+  "logout": "Logout",
+  "@logout": {},
+  "logout_title": "Log out?",
+  "@logout_title": {},
+  "logout_body": "You will be signed out of your session.",
+  "@logout_body": {},
+  "cancel": "Cancel",
+  "@cancel": {},
+  "page_dashboard": "Dashboard",
+  "@page_dashboard": {},
+  "page_users": "Users",
+  "@page_users": {},
+  "page_settings": "Settings",
+  "@page_settings": {}
 }

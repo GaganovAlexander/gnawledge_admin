@@ -46,5 +46,29 @@
         "example": "user@example.com"
       }
     }
-  }
+  },
+  "brand_title": "Админ-панель",
+  "@brand_title": {},
+  "nav_dashboard": "Дашборд",
+  "@nav_dashboard": {},
+  "nav_users": "Пользователи",
+  "@nav_users": {},
+  "nav_settings": "Настройки",
+  "@nav_settings": {},
+  "my_account": "Мой аккаунт",
+  "@my_account": {},
+  "logout": "Выйти",
+  "@logout": {},
+  "logout_title": "Выйти из аккаунта?",
+  "@logout_title": {},
+  "logout_body": "Вы будете выведены из текущей сессии.",
+  "@logout_body": {},
+  "cancel": "Отмена",
+  "@cancel": {},
+  "page_dashboard": "Панель",
+  "@page_dashboard": {},
+  "page_users": "Пользователи",
+  "@page_users": {},
+  "page_settings": "Настройки",
+  "@page_settings": {}
 }

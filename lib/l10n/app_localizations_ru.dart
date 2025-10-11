@@ -66,7 +66,43 @@ class AppLocalizationsRu extends AppLocalizations {
   String get back_to_login => 'Назад ко входу';
 
   @override
-  String forgot_confirmation(Object email) {
+  String forgot_confirmation(String email) {
     return 'Если аккаунт с адресом $email существует, на него вскоре придёт письмо со ссылкой для сброса.';
   }
+
+  @override
+  String get brand_title => 'Админ-панель';
+
+  @override
+  String get nav_dashboard => 'Дашборд';
+
+  @override
+  String get nav_users => 'Пользователи';
+
+  @override
+  String get nav_settings => 'Настройки';
+
+  @override
+  String get my_account => 'Мой аккаунт';
+
+  @override
+  String get logout => 'Выйти';
+
+  @override
+  String get logout_title => 'Выйти из аккаунта?';
+
+  @override
+  String get logout_body => 'Вы будете выведены из текущей сессии.';
+
+  @override
+  String get cancel => 'Отмена';
+
+  @override
+  String get page_dashboard => 'Панель';
+
+  @override
+  String get page_users => 'Пользователи';
+
+  @override
+  String get page_settings => 'Настройки';
 }

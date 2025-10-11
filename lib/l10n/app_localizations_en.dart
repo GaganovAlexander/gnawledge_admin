@@ -66,7 +66,43 @@ class AppLocalizationsEn extends AppLocalizations {
   String get back_to_login => 'Back to Login';
 
   @override
-  String forgot_confirmation(Object email) {
+  String forgot_confirmation(String email) {
     return 'If an account exists with $email, you will receive a password reset link shortly.';
   }
+
+  @override
+  String get brand_title => 'Admin Panel';
+
+  @override
+  String get nav_dashboard => 'Dashboard';
+
+  @override
+  String get nav_users => 'Users';
+
+  @override
+  String get nav_settings => 'Settings';
+
+  @override
+  String get my_account => 'My Account';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get logout_title => 'Log out?';
+
+  @override
+  String get logout_body => 'You will be signed out of your session.';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get page_dashboard => 'Dashboard';
+
+  @override
+  String get page_users => 'Users';
+
+  @override
+  String get page_settings => 'Settings';
 }

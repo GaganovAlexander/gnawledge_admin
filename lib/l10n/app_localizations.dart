@@ -213,7 +213,79 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'If an account exists with {email}, you will receive a password reset link shortly.'**
-  String forgot_confirmation(Object email);
+  String forgot_confirmation(String email);
+
+  /// No description provided for @brand_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin Panel'**
+  String get brand_title;
+
+  /// No description provided for @nav_dashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get nav_dashboard;
+
+  /// No description provided for @nav_users.
+  ///
+  /// In en, this message translates to:
+  /// **'Users'**
+  String get nav_users;
+
+  /// No description provided for @nav_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get nav_settings;
+
+  /// No description provided for @my_account.
+  ///
+  /// In en, this message translates to:
+  /// **'My Account'**
+  String get my_account;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @logout_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out?'**
+  String get logout_title;
+
+  /// No description provided for @logout_body.
+  ///
+  /// In en, this message translates to:
+  /// **'You will be signed out of your session.'**
+  String get logout_body;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @page_dashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get page_dashboard;
+
+  /// No description provided for @page_users.
+  ///
+  /// In en, this message translates to:
+  /// **'Users'**
+  String get page_users;
+
+  /// No description provided for @page_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get page_settings;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
