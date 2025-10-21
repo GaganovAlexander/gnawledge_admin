@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
+import 'package:gnawledge_admin/shared/widgets/language_switcher.dart';
 
 class PlaceholderPage extends StatelessWidget {
   const PlaceholderPage({
@@ -17,6 +18,11 @@ class PlaceholderPage extends StatelessWidget {
       'nav_settings' => t.nav_settings,
       _ => titleKey,
     };
-    return Center(child: Text(title));
+    return Stack(
+      children: [
+        Center(child: Text(title)),
+        const Positioned(top: 16, right: 16, child: LanguageSwitcher()),
+      ],
+    );
   }
 }

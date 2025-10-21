@@ -335,7 +335,9 @@ class _SecurityTab extends ConsumerWidget {
             TextFormField(
               controller: current,
               obscureText: true,
-              decoration: _inputDecoration(),
+              decoration: _inputDecoration().copyWith(
+                hintText: '********',
+              ),
               validator: (v) => (v == null || v.isEmpty) ? t.required : null,
             ),
             const SizedBox(height: 16),
@@ -344,7 +346,9 @@ class _SecurityTab extends ConsumerWidget {
             TextFormField(
               controller: next,
               obscureText: true,
-              decoration: _inputDecoration(),
+              decoration: _inputDecoration().copyWith(
+                hintText: '********',
+              ),
               validator: (v) => (v == null || v.length < 6)
                   ? t.validation_password_length
                   : null,
@@ -358,7 +362,9 @@ class _SecurityTab extends ConsumerWidget {
             TextFormField(
               controller: confirm,
               obscureText: true,
-              decoration: _inputDecoration(),
+              decoration: _inputDecoration().copyWith(
+                hintText: '********',
+              ),
               validator: (v) =>
                   v != next.text ? t.validation_passwords_mismatch : null,
             ),
