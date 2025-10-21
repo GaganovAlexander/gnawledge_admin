@@ -4,6 +4,11 @@ import 'package:gnawledge_admin/app/env.dart';
 import 'package:gnawledge_admin/core/security/token_storage.dart';
 import 'package:gnawledge_admin/core/security/web_cookie_storage.dart';
 import 'package:gnawledge_admin/core/security/web_cookie_token_storage.dart';
+import 'package:gnawledge_admin/features/account/data/repositories/account_repository_impl.dart';
+import 'package:gnawledge_admin/features/account/data/sources/account_data_source.dart';
+import 'package:gnawledge_admin/features/account/data/sources/account_mock_ds.dart';
+import 'package:gnawledge_admin/features/account/data/sources/account_remote_ds.dart';
+import 'package:gnawledge_admin/features/account/domain/repositories/account_repository.dart';
 import 'package:gnawledge_admin/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:gnawledge_admin/features/auth/data/sources/auth_data_source.dart';
 import 'package:gnawledge_admin/features/auth/data/sources/auth_mock_ds.dart';
@@ -46,4 +51,18 @@ final getTokensUseCaseProvider =
 
 final requestPasswordResetProvider = Provider<RequestPasswordReset>(
   (ref) => RequestPasswordReset(ref.watch(authRepositoryProvider)),
+);
+
+final accountDataSourceProvider = Provider<AccountDataSource>((ref) {
+  final env = ref.watch(envProvider);
+  if (env.useMocks) {
+    return AccountMockDataSource();
+  } else {
+    final dio = ref.watch(dioProvider);
+    return AccountRemoteDataSource(dio);
+  }
+});
+
+final accountRepositoryProvider = Provider<AccountRepository>(
+  (ref) => AccountRepositoryImpl(ref.watch(accountDataSourceProvider)),
 );

@@ -105,4 +105,64 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get page_settings => 'Настройки';
+
+  @override
+  String get account_settings => 'Настройки аккаунта';
+
+  @override
+  String get account_settings_subtitle => 'Управляйте данными аккаунта и настройками безопасности';
+
+  @override
+  String get close => 'Закрыть';
+
+  @override
+  String get profile_tab => 'Профиль';
+
+  @override
+  String get security_tab => 'Безопасность';
+
+  @override
+  String get full_name => 'Полное имя';
+
+  @override
+  String get email_cannot_be_changed => 'Email изменить нельзя';
+
+  @override
+  String get update_profile => 'Обновить профиль';
+
+  @override
+  String get profile_updated => 'Профиль обновлён';
+
+  @override
+  String get current_password => 'Текущий пароль';
+
+  @override
+  String get new_password => 'Новый пароль';
+
+  @override
+  String get confirm_new_password => 'Подтвердите новый пароль';
+
+  @override
+  String get update_password => 'Обновить пароль';
+
+  @override
+  String get password_updated => 'Пароль обновлён';
+
+  @override
+  String get required => 'Обязательное поле';
+
+  @override
+  String get validation_fullname => 'Введите полное имя';
+
+  @override
+  String get validation_password_length => 'Пароль должен быть не короче 6 символов';
+
+  @override
+  String get validation_passwords_mismatch => 'Пароли не совпадают';
+
+  @override
+  String get error_loading_profile => 'Не удалось загрузить профиль';
+
+  @override
+  String get retry => 'Повторить';
 }

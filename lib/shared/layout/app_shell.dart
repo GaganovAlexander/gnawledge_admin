@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gnawledge_admin/shared/theme/colors.dart';
 import 'package:gnawledge_admin/shared/widgets/sidebar.dart';
 
 class AppShell extends StatelessWidget {
@@ -16,7 +17,7 @@ class AppShell extends StatelessWidget {
           const Sidebar(),
           Expanded(
             child: ColoredBox(
-              color: const Color(0xFFF7F7FB),
+              color: AppColors.pageBg,
               child: child,
             ),
           ),

@@ -11,6 +11,7 @@ import 'package:go_router/go_router.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final repo = ref.read(authRepositoryProvider);
+  const startPage = '/users';
 
   const publicPaths = <String>['/login', '/forgot-password'];
   bool isPublic(String loc) => publicPaths.any((p) => loc.startsWith(p));
@@ -19,7 +20,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     final loc = state.matchedLocation;
 
     if (repo.isAccessValid()) {
-      if (isPublic(loc)) return '/dashboard';
+      if (isPublic(loc)) return startPage;
       return null;
     }
 
@@ -37,9 +38,13 @@ final routerProvider = Provider<GoRouter>((ref) {
   }
 
   return GoRouter(
-    initialLocation: '/users',
+    initialLocation: startPage,
     redirect: guard,
     routes: [
+      GoRoute(
+        path: '/',
+        redirect: (_, __) => startPage,
+      ),
       GoRoute(
         path: '/login',
         pageBuilder: (c, s) => const NoTransitionPage(child: LoginPage()),

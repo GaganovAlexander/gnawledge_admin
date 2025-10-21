@@ -4,6 +4,7 @@ import 'package:gnawledge_admin/features/auth/presentation/providers/auth_provid
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
 import 'package:gnawledge_admin/shared/widgets/language_switcher.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gnawledge_admin/shared/theme/colors.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -29,7 +30,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F6FA),
+      backgroundColor: AppColors.pageBg,
       body: Stack(
         children: [
           const Positioned(top: 16, right: 16, child: LanguageSwitcher()),
@@ -86,7 +87,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         color: Theme.of(context).colorScheme.primary,
         shape: BoxShape.circle,
       ),
-      child: const Icon(Icons.login, color: Colors.white),
+      child: const Icon(Icons.login, color: AppColors.onPrimary),
     );
   }
 
@@ -107,7 +108,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           style: Theme.of(context)
               .textTheme
               .bodyMedium
-              ?.copyWith(color: Colors.black54),
+              ?.copyWith(color: AppColors.textMedium),
           textAlign: TextAlign.center,
         ),
       ],
@@ -208,7 +209,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       if (!context.mounted) return;
 
       final from = GoRouterState.of(context).uri.queryParameters['from'];
-      router.go(from ?? '/');
+      router.go(from ?? '/users');
     } catch (e) {
       if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(

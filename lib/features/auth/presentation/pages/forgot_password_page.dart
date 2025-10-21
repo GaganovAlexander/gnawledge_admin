@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gnawledge_admin/features/auth/presentation/providers/forgot_password_providers.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
+import 'package:gnawledge_admin/shared/theme/colors.dart';
 import 'package:gnawledge_admin/shared/widgets/language_switcher.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,7 +29,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
     final doneEmail = ref.watch(forgotEmailProvider);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F6FA),
+      backgroundColor: AppColors.pageBg,
       body: Stack(
         children: [
           const Positioned(top: 16, right: 16, child: LanguageSwitcher()),
@@ -68,8 +69,10 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
           const SizedBox(height: 24),
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(t.email_label,
-                style: Theme.of(context).textTheme.labelLarge),
+            child: Text(
+              t.email_label,
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
           ),
           const SizedBox(height: 8),
           TextFormField(
@@ -99,7 +102,8 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
                   ? const SizedBox(
                       width: 20,
                       height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2))
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
                   : Text(t.send_reset_link),
             ),
           ),
@@ -115,7 +119,10 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
   }
 
   Widget _buildConfirmation(
-      BuildContext context, AppLocalizations t, String email) {
+    BuildContext context,
+    AppLocalizations t,
+    String email,
+  ) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -128,7 +135,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
           width: double.infinity,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.04),
+            color: AppColors.hoverNeutral4,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Text(
@@ -154,7 +161,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
         color: Theme.of(context).colorScheme.primary,
         shape: BoxShape.circle,
       ),
-      child: const Icon(Icons.key, color: Colors.white),
+      child: const Icon(Icons.key, color: AppColors.onPrimary),
     );
   }
 
@@ -175,7 +182,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
           style: Theme.of(context)
               .textTheme
               .bodyMedium
-              ?.copyWith(color: Colors.black54),
+              ?.copyWith(color: AppColors.textMedium),
           textAlign: TextAlign.center,
         ),
       ],

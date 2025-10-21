@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gnawledge_admin/app/di.dart';
+import 'package:gnawledge_admin/features/account/presentation/dialogs/account_settings_dialog.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
+import 'package:gnawledge_admin/shared/theme/colors.dart';
 import 'package:go_router/go_router.dart';
 
 class Sidebar extends ConsumerWidget {
@@ -82,14 +84,13 @@ class Sidebar extends ConsumerWidget {
         color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
           right: BorderSide(
-            color: Colors.black.withValues(alpha: .06),
+            color: AppColors.textHigh.withValues(alpha: .06),
           ),
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Brand
           Padding(
             padding: const EdgeInsets.only(left: 6, bottom: 16),
             child: Text(
@@ -101,7 +102,6 @@ class Sidebar extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 6),
-          // Nav
           navItem(
             icon: Icons.dashboard_outlined,
             label: t.nav_dashboard,
@@ -121,7 +121,13 @@ class Sidebar extends ConsumerWidget {
           ),
           const Spacer(),
           TextButton.icon(
-            onPressed: () {}, // My Account — позже
+            onPressed: () async {
+              await showDialog<bool>(
+                context: context,
+                barrierColor: AppColors.textHigh.withValues(alpha: .3),
+                builder: (_) => const AccountSettingsDialog(),
+              );
+            },
             icon: const Icon(Icons.account_circle_outlined, size: 18),
             label: Text(t.my_account),
           ),

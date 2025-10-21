@@ -105,4 +105,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get page_settings => 'Settings';
+
+  @override
+  String get account_settings => 'Account Settings';
+
+  @override
+  String get account_settings_subtitle => 'Manage your account information and security settings';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get profile_tab => 'Profile';
+
+  @override
+  String get security_tab => 'Security';
+
+  @override
+  String get full_name => 'Full Name';
+
+  @override
+  String get email_cannot_be_changed => 'Email cannot be changed';
+
+  @override
+  String get update_profile => 'Update Profile';
+
+  @override
+  String get profile_updated => 'Profile updated';
+
+  @override
+  String get current_password => 'Current Password';
+
+  @override
+  String get new_password => 'New Password';
+
+  @override
+  String get confirm_new_password => 'Confirm New Password';
+
+  @override
+  String get update_password => 'Update Password';
+
+  @override
+  String get password_updated => 'Password updated';
+
+  @override
+  String get required => 'Required';
+
+  @override
+  String get validation_fullname => 'Please enter your full name';
+
+  @override
+  String get validation_password_length => 'Password must be at least 6 characters';
+
+  @override
+  String get validation_passwords_mismatch => 'Passwords do not match';
+
+  @override
+  String get error_loading_profile => 'Failed to load profile';
+
+  @override
+  String get retry => 'Retry';
 }

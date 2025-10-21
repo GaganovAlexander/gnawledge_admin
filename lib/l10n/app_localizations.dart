@@ -286,6 +286,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get page_settings;
+
+  /// No description provided for @account_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Settings'**
+  String get account_settings;
+
+  /// No description provided for @account_settings_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your account information and security settings'**
+  String get account_settings_subtitle;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @profile_tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile_tab;
+
+  /// No description provided for @security_tab.
+  ///
+  /// In en, this message translates to:
+  /// **'Security'**
+  String get security_tab;
+
+  /// No description provided for @full_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get full_name;
+
+  /// No description provided for @email_cannot_be_changed.
+  ///
+  /// In en, this message translates to:
+  /// **'Email cannot be changed'**
+  String get email_cannot_be_changed;
+
+  /// No description provided for @update_profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Profile'**
+  String get update_profile;
+
+  /// No description provided for @profile_updated.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated'**
+  String get profile_updated;
+
+  /// No description provided for @current_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Password'**
+  String get current_password;
+
+  /// No description provided for @new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get new_password;
+
+  /// No description provided for @confirm_new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm New Password'**
+  String get confirm_new_password;
+
+  /// No description provided for @update_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Password'**
+  String get update_password;
+
+  /// No description provided for @password_updated.
+  ///
+  /// In en, this message translates to:
+  /// **'Password updated'**
+  String get password_updated;
+
+  /// No description provided for @required.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get required;
+
+  /// No description provided for @validation_fullname.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your full name'**
+  String get validation_fullname;
+
+  /// No description provided for @validation_password_length.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get validation_password_length;
+
+  /// No description provided for @validation_passwords_mismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get validation_passwords_mismatch;
+
+  /// No description provided for @error_loading_profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load profile'**
+  String get error_loading_profile;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

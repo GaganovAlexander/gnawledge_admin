@@ -7,6 +7,6 @@ ThemeData buildTheme() {
   return base.copyWith(
     colorScheme: ColorScheme.fromSeed(seedColor: AppColors.brand),
     textTheme: buildTextTheme(),
-    scaffoldBackgroundColor: const Color(0xFFF7F7FB),
+    scaffoldBackgroundColor: AppColors.onBrand,
   );
 }
