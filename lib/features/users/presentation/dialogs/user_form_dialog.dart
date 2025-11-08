@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gnawledge_admin/features/users/domain/entities/user.dart';
+import 'package:gnawledge_admin/l10n/app_localizations.dart';
 
 class UserFormDialog extends StatefulWidget {
   const UserFormDialog({super.key, this.initial});
@@ -33,8 +34,12 @@ class _UserFormDialogState extends State<UserFormDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+
     return AlertDialog(
-      title: Text(widget.initial == null ? 'Add User' : 'Edit User'),
+      title: Text(
+        widget.initial == null ? t.user_form_add_title : t.user_form_edit_title,
+      ),
       content: SizedBox(
         width: 420,
         child: Form(
@@ -43,33 +48,50 @@ class _UserFormDialogState extends State<UserFormDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextFormField(
-                  controller: _first,
-                  decoration: const InputDecoration(labelText: 'First name'),
-                  validator: _r),
+                controller: _first,
+                decoration: InputDecoration(labelText: t.user_form_firstName),
+                validator: _r,
+              ),
               TextFormField(
-                  controller: _last,
-                  decoration: const InputDecoration(labelText: 'Last name'),
-                  validator: _r),
+                controller: _last,
+                decoration: InputDecoration(labelText: t.user_form_lastName),
+                validator: _r,
+              ),
               TextFormField(
-                  controller: _email,
-                  decoration: const InputDecoration(labelText: 'Email'),
-                  validator: _r),
+                controller: _email,
+                decoration: InputDecoration(labelText: t.user_form_email),
+                validator: _r,
+              ),
               const SizedBox(height: 8),
               DropdownButtonFormField(
                 initialValue: _role,
-                items: const ['Admin', 'Manager', 'User']
-                    .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                items: [t.role_admin, t.role_manager, t.role_user]
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e == t.role_admin
+                            ? 'Admin'
+                            : e == t.role_manager
+                                ? 'Manager'
+                                : 'User',
+                        child: Text(e),
+                      ),
+                    )
                     .toList(),
                 onChanged: (v) => setState(() => _role = v!),
-                decoration: const InputDecoration(labelText: 'Role'),
+                decoration: InputDecoration(labelText: t.user_form_role),
               ),
               DropdownButtonFormField(
                 initialValue: _status,
-                items: const ['active', 'inactive']
-                    .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                items: [t.status_active, t.status_inactive]
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e == t.status_active ? 'active' : 'inactive',
+                        child: Text(e),
+                      ),
+                    )
                     .toList(),
                 onChanged: (v) => setState(() => _status = v!),
-                decoration: const InputDecoration(labelText: 'Status'),
+                decoration: InputDecoration(labelText: t.user_form_status),
               ),
             ],
           ),
@@ -78,7 +100,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: Text(t.user_form_cancel),
         ),
         FilledButton(
           onPressed: () {
@@ -96,7 +118,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
             );
             Navigator.pop(context, u);
           },
-          child: const Text('Save'),
+          child: Text(t.user_form_save),
         ),
       ],
     );

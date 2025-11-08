@@ -4,6 +4,7 @@ import 'package:gnawledge_admin/features/users/domain/entities/user.dart';
 import 'package:gnawledge_admin/features/users/presentation/dialogs/user_form_dialog.dart';
 import 'package:gnawledge_admin/features/users/presentation/providers.dart';
 import 'package:gnawledge_admin/features/users/presentation/widgets/status_badge.dart';
+import 'package:gnawledge_admin/l10n/app_localizations.dart';
 
 class UsersPage extends ConsumerStatefulWidget {
   const UsersPage({super.key});
@@ -17,6 +18,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     final state = ref.watch(usersControllerProvider);
 
     return Padding(
@@ -28,9 +30,9 @@ class _UsersPageState extends ConsumerState<UsersPage> {
               Expanded(
                 child: TextField(
                   controller: _search,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    hintText: 'Search users...',
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
+                    hintText: t.users_search_hint,
                   ),
                   onChanged: (v) =>
                       ref.read(usersControllerProvider.notifier).setQuery(v),
@@ -40,15 +42,13 @@ class _UsersPageState extends ConsumerState<UsersPage> {
               FilledButton.icon(
                 onPressed: () async {
                   final u = await showDialog<AppUser>(
-                    context: context,
-                    builder: (_) => const UserFormDialog(),
-                  );
+                      context: context, builder: (_) => const UserFormDialog());
                   if (u != null) {
                     await ref.read(usersControllerProvider.notifier).add(u);
                   }
                 },
                 icon: const Icon(Icons.add),
-                label: const Text('Add User'),
+                label: Text(t.users_add),
               ),
             ],
           ),
@@ -57,7 +57,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
             child: state.when(
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (e, _) => Center(child: Text(e.toString())),
-              data: (users) => _UsersTable(users: users),
+              data: (users) => _UsersTable(users: users, t: t),
             ),
           ),
         ],
@@ -67,9 +67,10 @@ class _UsersPageState extends ConsumerState<UsersPage> {
 }
 
 class _UsersTable extends StatelessWidget {
-  const _UsersTable({required this.users});
+  const _UsersTable({required this.users, required this.t});
 
   final List<AppUser> users;
+  final AppLocalizations t;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +82,7 @@ class _UsersTable extends StatelessWidget {
         separatorBuilder: (_, __) => const Divider(height: 1),
         itemBuilder: (context, index) {
           if (index == 0) {
-            return _HeaderRow();
+            return _HeaderRow(t: t);
           }
           final u = users[index - 1];
           return Padding(
@@ -97,16 +98,14 @@ class _UsersTable extends StatelessWidget {
                       Expanded(
                         child: Text(
                           u.fullName,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: const TextStyle(fontWeight: FontWeight.w600),
                         ),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(width: 360, child: Text(u.email)),
-                SizedBox(width: 160, child: Text(u.role)),
+                SizedBox(width: 160, child: Text(_roleLabel(t, u.role))),
                 SizedBox(
                   width: 160,
                   child: Align(
@@ -116,6 +115,16 @@ class _UsersTable extends StatelessWidget {
                 ),
                 SizedBox(width: 180, child: Text(_fmt(u.joinDate))),
                 PopupMenuButton<String>(
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value: 'edit',
+                      child: Text(t.users_action_edit),
+                    ),
+                    PopupMenuItem(
+                      value: 'delete',
+                      child: Text(t.users_action_delete),
+                    ),
+                  ],
                   onSelected: (v) async {
                     if (v == 'edit') {
                       final edited = await showDialog<AppUser>(
@@ -138,18 +147,6 @@ class _UsersTable extends StatelessWidget {
                           .remove(u.id);
                     }
                   },
-                  itemBuilder: (context) => [
-                    const PopupMenuItem(
-                      value: 'edit',
-                      child: Text('Edit'),
-                    ),
-                    const PopupMenuItem(
-                      value: 'delete',
-                      child: Text('Delete'),
-                    ),
-                  ],
-                  onOpened: () {},
-                  onCanceled: () {},
                 ),
               ],
             ),
@@ -160,13 +157,29 @@ class _UsersTable extends StatelessWidget {
   }
 
   String _initials(AppUser u) =>
+      // ignore: lines_longer_than_80_chars
       '${u.firstName.isNotEmpty ? u.firstName[0] : ''}${u.lastName.isNotEmpty ? u.lastName[0] : ''}'
           .toUpperCase();
   String _fmt(DateTime d) =>
+      // ignore: lines_longer_than_80_chars
       '${d.year.toString().padLeft(4, '0')}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+  String _roleLabel(AppLocalizations t, String role) {
+    switch (role) {
+      case 'Admin':
+        return t.role_admin;
+      case 'Manager':
+        return t.role_manager;
+      default:
+        return t.role_user;
+    }
+  }
 }
 
 class _HeaderRow extends StatelessWidget {
+  const _HeaderRow({required this.t});
+
+  final AppLocalizations t;
+
   @override
   Widget build(BuildContext context) {
     final style = Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -177,11 +190,11 @@ class _HeaderRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Row(
         children: [
-          SizedBox(width: 320, child: Text('User', style: style)),
-          SizedBox(width: 360, child: Text('Email', style: style)),
-          SizedBox(width: 160, child: Text('Role', style: style)),
-          SizedBox(width: 160, child: Text('Status', style: style)),
-          SizedBox(width: 180, child: Text('Join Date', style: style)),
+          SizedBox(width: 320, child: Text(t.users_col_user, style: style)),
+          SizedBox(width: 360, child: Text(t.users_col_email, style: style)),
+          SizedBox(width: 160, child: Text(t.users_col_role, style: style)),
+          SizedBox(width: 160, child: Text(t.users_col_status, style: style)),
+          SizedBox(width: 180, child: Text(t.users_col_joinDate, style: style)),
           const SizedBox(width: 48),
         ],
       ),
