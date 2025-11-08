@@ -4,6 +4,12 @@ class ChangePassword {
   const ChangePassword(this.repo);
   final AccountRepository repo;
 
-  Future<void> call({required String current, required String next}) =>
-      repo.changePassword(currentPassword: current, newPassword: next);
+  Future<void> call({
+    required String current,
+    required String next,
+  }) =>
+      repo.changePassword(
+        currentPassword: current,
+        newPassword: next,
+      );
 }

@@ -39,7 +39,12 @@ class AccountController extends StateNotifier<AccountState> {
     return updated;
   }
 
-  Future<void> changePassword(
-          {required String current, required String next}) =>
-      changePasswordUc(current: current, next: next);
+  Future<void> changePassword({
+    required String current,
+    required String next,
+  }) =>
+      changePasswordUc(
+        current: current,
+        next: next,
+      );
 }

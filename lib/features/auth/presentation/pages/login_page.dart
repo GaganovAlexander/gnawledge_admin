@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gnawledge_admin/features/auth/presentation/providers/auth_providers.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
+import 'package:gnawledge_admin/shared/theme/colors.dart';
 import 'package:gnawledge_admin/shared/widgets/language_switcher.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gnawledge_admin/shared/theme/colors.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});

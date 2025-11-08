@@ -29,5 +29,9 @@ class UserDto {
         'full_name': fullName,
       };
 
-  UserEntity toEntity() => UserEntity(id: id, email: email, fullName: fullName);
+  UserEntity toEntity() => UserEntity(
+        id: id,
+        email: email,
+        fullName: fullName,
+      );
 }

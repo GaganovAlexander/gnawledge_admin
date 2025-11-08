@@ -117,6 +117,10 @@ class _Content extends ConsumerWidget {
   final GlobalKey<FormState> profileForm;
   final GlobalKey<FormState> securityForm;
 
+  void _close(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
@@ -149,7 +153,7 @@ class _Content extends ConsumerWidget {
             ),
             IconButton(
               tooltip: t.close,
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => _close(context),
               icon: const Icon(Icons.close),
             ),
           ],
@@ -157,7 +161,7 @@ class _Content extends ConsumerWidget {
         const SizedBox(height: 16),
         Row(
           children: [
-            AccountAvatar(email: user.email),
+            AccountAvatar(name: user.fullName),
             const SizedBox(width: 12),
             Text(
               user.email,
@@ -225,6 +229,18 @@ class _ProfileTab extends ConsumerWidget {
         isDense: true,
       );
 
+  Future<void> _submit(BuildContext context, WidgetRef ref) async {
+    if (!profileForm.currentState!.validate()) return;
+    final notifier = ref.read(accountControllerProvider.notifier);
+    await notifier.updateProfile(nameCtrl.text.trim());
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(t.profile_updated)),
+      );
+      Navigator.of(context).pop(true);
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final me = ref.watch(accountControllerProvider).me;
@@ -273,21 +289,7 @@ class _ProfileTab extends ConsumerWidget {
                   shape: const StadiumBorder(),
                   minimumSize: const Size.fromHeight(44),
                 ),
-                onPressed: () async {
-                  if (!profileForm.currentState!.validate()) return;
-
-                  final notifier = ref.read(accountControllerProvider.notifier);
-                  await notifier.updateProfile(nameCtrl.text.trim());
-
-                  if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(t.profile_updated),
-                      ),
-                    );
-                    Navigator.of(context).pop(true);
-                  }
-                },
+                onPressed: () => _submit(context, ref),
                 child: Text(t.update_profile),
               ),
             ),
@@ -313,10 +315,24 @@ class _SecurityTab extends ConsumerWidget {
   final TextEditingController confirm;
   final GlobalKey<FormState> securityForm;
 
+  static const _passwordHintText = '********';
+
   InputDecoration _inputDecoration() => InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         isDense: true,
       );
+
+  Future<void> _submit(BuildContext context, WidgetRef ref) async {
+    if (!securityForm.currentState!.validate()) return;
+    final notifier = ref.read(accountControllerProvider.notifier);
+    await notifier.changePassword(current: current.text, next: next.text);
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(t.password_updated)),
+      );
+      Navigator.of(context).pop(true);
+    }
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -336,7 +352,7 @@ class _SecurityTab extends ConsumerWidget {
               controller: current,
               obscureText: true,
               decoration: _inputDecoration().copyWith(
-                hintText: '********',
+                hintText: _passwordHintText,
               ),
               validator: (v) => (v == null || v.isEmpty) ? t.required : null,
             ),
@@ -347,7 +363,7 @@ class _SecurityTab extends ConsumerWidget {
               controller: next,
               obscureText: true,
               decoration: _inputDecoration().copyWith(
-                hintText: '********',
+                hintText: _passwordHintText,
               ),
               validator: (v) => (v == null || v.length < 6)
                   ? t.validation_password_length
@@ -363,7 +379,7 @@ class _SecurityTab extends ConsumerWidget {
               controller: confirm,
               obscureText: true,
               decoration: _inputDecoration().copyWith(
-                hintText: '********',
+                hintText: _passwordHintText,
               ),
               validator: (v) =>
                   v != next.text ? t.validation_passwords_mismatch : null,
@@ -376,24 +392,7 @@ class _SecurityTab extends ConsumerWidget {
                   shape: const StadiumBorder(),
                   minimumSize: const Size.fromHeight(44),
                 ),
-                onPressed: () async {
-                  if (!securityForm.currentState!.validate()) return;
-
-                  final notifier = ref.read(accountControllerProvider.notifier);
-                  await notifier.changePassword(
-                    current: current.text,
-                    next: next.text,
-                  );
-
-                  if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(t.password_updated),
-                      ),
-                    );
-                    Navigator.of(context).pop(true);
-                  }
-                },
+                onPressed: () => _submit(context, ref),
                 child: Text(t.update_password),
               ),
             ),

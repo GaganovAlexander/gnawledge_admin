@@ -14,8 +14,10 @@ class AccountRemoteDataSource implements AccountDataSource {
 
   @override
   Future<UserDto> updateProfile({required String fullName}) async {
-    final res = await dio.patch<Map<String, dynamic>>('/account/profile',
-        data: {'full_name': fullName});
+    final res = await dio.patch<Map<String, dynamic>>(
+      '/account/profile',
+      data: {'full_name': fullName},
+    );
     return UserDto.fromJson(res.data!);
   }
 
@@ -24,9 +26,12 @@ class AccountRemoteDataSource implements AccountDataSource {
     required String currentPassword,
     required String newPassword,
   }) async {
-    await dio.post<Map<String, dynamic>>('/account/change-password', data: {
-      'current_password': currentPassword,
-      'new_password': newPassword,
-    });
+    await dio.post<Map<String, dynamic>>(
+      '/account/change-password',
+      data: {
+        'current_password': currentPassword,
+        'new_password': newPassword,
+      },
+    );
   }
 }

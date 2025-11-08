@@ -31,7 +31,7 @@ class AccountMockDataSource implements AccountDataSource {
     required String newPassword,
   }) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
-    if (currentPassword != '123456') {
+    if (currentPassword != 'admin123') {
       throw Exception('Invalid current password');
     }
   }

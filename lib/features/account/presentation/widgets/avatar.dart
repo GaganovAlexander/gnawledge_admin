@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gnawledge_admin/shared/theme/colors.dart';
 
 class AccountAvatar extends StatelessWidget {
-  const AccountAvatar({required this.email, super.key});
-  final String email;
+  const AccountAvatar({required this.name, super.key});
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
-    final initials = _calcInitials(email);
+    final initials = _calcInitials(name ?? '');
     return CircleAvatar(
       radius: 28,
       backgroundColor: AppColors.avatarSurface,
