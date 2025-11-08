@@ -1,37 +1,26 @@
 import 'package:dio/dio.dart';
 import 'package:gnawledge_admin/features/account/data/models/user_dto.dart';
 import 'package:gnawledge_admin/features/account/data/sources/account_data_source.dart';
+import 'package:gnawledge_admin/features/account/infra/api/account_api.dart';
 
 class AccountRemoteDataSource implements AccountDataSource {
-  AccountRemoteDataSource(this.dio);
-  final Dio dio;
+  AccountRemoteDataSource(Dio dio) : _api = AccountApi(dio);
+  final AccountApi _api;
 
   @override
-  Future<UserDto> getMe() async {
-    final res = await dio.get<Map<String, dynamic>>('/account/me');
-    return UserDto.fromJson(res.data!);
-  }
+  Future<UserDto> getMe() => _api.getMe();
 
   @override
-  Future<UserDto> updateProfile({required String fullName}) async {
-    final res = await dio.patch<Map<String, dynamic>>(
-      '/account/profile',
-      data: {'full_name': fullName},
-    );
-    return UserDto.fromJson(res.data!);
-  }
+  Future<UserDto> updateProfile({required String fullName}) =>
+      _api.updateProfile({'full_name': fullName});
 
   @override
   Future<void> changePassword({
     required String currentPassword,
     required String newPassword,
-  }) async {
-    await dio.post<Map<String, dynamic>>(
-      '/account/change-password',
-      data: {
+  }) =>
+      _api.changePassword({
         'current_password': currentPassword,
         'new_password': newPassword,
-      },
-    );
-  }
+      });
 }

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gnawledge_admin/app/di.dart';
 import 'package:gnawledge_admin/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:gnawledge_admin/features/auth/presentation/pages/login_page.dart';
+import 'package:gnawledge_admin/features/users/presentation/pages/users_page.dart';
 import 'package:gnawledge_admin/shared/layout/app_shell.dart';
 import 'package:gnawledge_admin/shared/pages/placeholder_page.dart';
 import 'package:go_router/go_router.dart';
@@ -66,7 +67,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/users',
             pageBuilder: (c, s) => const NoTransitionPage(
-              child: PlaceholderPage(titleKey: 'nav_users'),
+              child: UsersPage(),
             ),
           ),
           GoRoute(
