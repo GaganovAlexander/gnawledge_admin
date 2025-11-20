@@ -156,5 +156,13 @@
   "status_active": "активен",
   "@status_active": {},
   "status_inactive": "неактивен",
-  "@status_inactive": {}
+  "@status_inactive": {},
+  "confirm_delete_user_title": "Удалить пользователя?",
+  "@confirm_delete_user_title": {},
+  "confirm_delete_user_text": "Вы уверены, что хотите удалить этого пользователя?",
+  "@confirm_delete_user_text": {},
+  "common_cancel": "Отмена",
+  "@common_cancel": {},
+  "common_delete": "Удалить",
+  "@common_delete": {}
 }

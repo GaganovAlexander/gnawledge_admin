@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gnawledge_admin/features/auth/presentation/providers/auth_providers.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
 import 'package:gnawledge_admin/shared/theme/colors.dart';
+import 'package:gnawledge_admin/shared/validations/email.dart';
 import 'package:gnawledge_admin/shared/widgets/language_switcher.dart';
 import 'package:go_router/go_router.dart';
 
@@ -131,11 +132,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         isDense: true,
       ),
-      validator: (v) {
-        final s = (v ?? '').trim();
-        final ok = RegExp(r'^[^@]+@[^@]+\.[^@]+$').hasMatch(s);
-        return ok ? null : t.validation_email;
-      },
+      validator: emailValidator(t),
       textInputAction: TextInputAction.next,
     );
   }

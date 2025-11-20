@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gnawledge_admin/features/users/domain/entities/user.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
+import 'package:gnawledge_admin/shared/validations/email.dart';
 
 class UserFormDialog extends StatefulWidget {
   const UserFormDialog({super.key, this.initial});
@@ -60,7 +61,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
               TextFormField(
                 controller: _email,
                 decoration: InputDecoration(labelText: t.user_form_email),
-                validator: _r,
+                validator: emailValidator(t),
               ),
               const SizedBox(height: 8),
               DropdownButtonFormField(

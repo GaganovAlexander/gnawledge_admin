@@ -156,5 +156,13 @@
   "status_active": "active",
   "@status_active": {},
   "status_inactive": "inactive",
-  "@status_inactive": {}
+  "@status_inactive": {},
+  "confirm_delete_user_title": "Delete user?",
+  "@confirm_delete_user_title": {},
+  "confirm_delete_user_text": "Are you sure you want to delete this user?",
+  "@confirm_delete_user_text": {},
+  "common_cancel": "Cancel",
+  "@common_cancel": {},
+  "common_delete": "Delete",
+  "@common_delete": {}
 }

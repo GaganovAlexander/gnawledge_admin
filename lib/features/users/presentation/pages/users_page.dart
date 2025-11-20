@@ -5,6 +5,7 @@ import 'package:gnawledge_admin/features/users/presentation/dialogs/user_form_di
 import 'package:gnawledge_admin/features/users/presentation/providers.dart';
 import 'package:gnawledge_admin/features/users/presentation/widgets/status_badge.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
+import 'package:gnawledge_admin/shared/widgets/confirm_dialog.dart';
 
 class UsersPage extends ConsumerStatefulWidget {
   const UsersPage({super.key});
@@ -140,6 +141,18 @@ class _UsersTable extends StatelessWidget {
                       }
                     }
                     if (v == 'delete') {
+                      if (!context.mounted) return;
+
+                      final ok = await showConfirmDialog(
+                        context,
+                        title: t.confirm_delete_user_title,
+                        text: t.confirm_delete_user_text,
+                        cancelText: t.common_cancel,
+                        acceptText: t.common_delete,
+                      );
+
+                      if (!ok) return;
+
                       if (!context.mounted) return;
                       final container = ProviderScope.containerOf(context);
                       await container
