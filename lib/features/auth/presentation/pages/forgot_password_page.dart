@@ -27,9 +27,10 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     final doneEmail = ref.watch(forgotEmailProvider);
+    final colors = Theme.of(context).extension<AppColors>()!;
 
     return Scaffold(
-      backgroundColor: AppColors.pageBg,
+      backgroundColor: colors.pageBg,
       body: Stack(
         children: [
           const Positioned(top: 16, right: 16, child: LanguageSwitcher()),
@@ -45,7 +46,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
                   padding: const EdgeInsets.all(24),
                   child: doneEmail == null
                       ? _buildForm(context, t)
-                      : _buildConfirmation(context, t, doneEmail),
+                      : _buildConfirmation(context, doneEmail),
                 ),
               ),
             ),
@@ -65,7 +66,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
           const SizedBox(height: 8),
           _buildIcon(context),
           const SizedBox(height: 16),
-          _buildTitle(context, t),
+          _buildTitle(context),
           const SizedBox(height: 24),
           Align(
             alignment: Alignment.centerLeft,
@@ -120,22 +121,24 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
 
   Widget _buildConfirmation(
     BuildContext context,
-    AppLocalizations t,
     String email,
   ) {
+    final t = AppLocalizations.of(context)!;
+    final colors = Theme.of(context).extension<AppColors>()!;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 8),
         _buildIcon(context),
         const SizedBox(height: 16),
-        _buildTitle(context, t),
+        _buildTitle(context),
         const SizedBox(height: 16),
         Container(
           width: double.infinity,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: AppColors.hoverNeutral4,
+            color: colors.hoverNeutral4,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Text(
@@ -154,6 +157,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
   }
 
   Widget _buildIcon(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     return Container(
       width: 56,
       height: 56,
@@ -161,11 +165,14 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
         color: Theme.of(context).colorScheme.primary,
         shape: BoxShape.circle,
       ),
-      child: const Icon(Icons.key, color: AppColors.onPrimary),
+      child: Icon(Icons.key, color: colors.onPrimary),
     );
   }
 
-  Widget _buildTitle(BuildContext context, AppLocalizations t) {
+  Widget _buildTitle(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+    final colors = Theme.of(context).extension<AppColors>()!;
+
     return Column(
       children: [
         Text(
@@ -182,7 +189,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
           style: Theme.of(context)
               .textTheme
               .bodyMedium
-              ?.copyWith(color: AppColors.textMedium),
+              ?.copyWith(color: colors.textMedium),
           textAlign: TextAlign.center,
         ),
       ],

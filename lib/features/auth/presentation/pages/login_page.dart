@@ -30,8 +30,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    final colors = Theme.of(context).extension<AppColors>()!;
+
     return Scaffold(
-      backgroundColor: AppColors.pageBg,
+      backgroundColor: colors.pageBg,
       body: Stack(
         children: [
           const Positioned(top: 16, right: 16, child: LanguageSwitcher()),
@@ -81,6 +83,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   }
 
   Widget _buildLogo(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
+
     return Container(
       width: 56,
       height: 56,
@@ -88,11 +92,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         color: Theme.of(context).colorScheme.primary,
         shape: BoxShape.circle,
       ),
-      child: const Icon(Icons.login, color: AppColors.onPrimary),
+      child: Icon(Icons.login, color: colors.onPrimary),
     );
   }
 
   Widget _buildTitle(BuildContext context, AppLocalizations t) {
+    final colors = Theme.of(context).extension<AppColors>()!;
+
     return Column(
       children: [
         Text(
@@ -109,7 +115,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           style: Theme.of(context)
               .textTheme
               .bodyMedium
-              ?.copyWith(color: AppColors.textMedium),
+              ?.copyWith(color: colors.textMedium),
           textAlign: TextAlign.center,
         ),
       ],

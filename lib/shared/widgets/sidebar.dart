@@ -16,6 +16,7 @@ class Sidebar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cs = Theme.of(context).colorScheme;
     final t = AppLocalizations.of(context)!;
+    final colors = Theme.of(context).extension<AppColors>()!;
 
     Widget navItem({
       required IconData icon,
@@ -84,7 +85,7 @@ class Sidebar extends ConsumerWidget {
         color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
           right: BorderSide(
-            color: AppColors.textHigh.withValues(alpha: .06),
+            color: colors.textHigh.withValues(alpha: .06),
           ),
         ),
       ),
@@ -124,7 +125,7 @@ class Sidebar extends ConsumerWidget {
             onPressed: () async {
               await showDialog<bool>(
                 context: context,
-                barrierColor: AppColors.textHigh.withValues(alpha: .3),
+                barrierColor: colors.textHigh.withValues(alpha: .3),
                 builder: (_) => const AccountSettingsDialog(),
               );
             },

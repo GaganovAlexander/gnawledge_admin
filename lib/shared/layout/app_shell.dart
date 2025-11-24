@@ -11,13 +11,15 @@ class AppShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
+
     return Scaffold(
       body: Row(
         children: [
           const Sidebar(),
           Expanded(
             child: ColoredBox(
-              color: AppColors.pageBg,
+              color: colors.pageBg,
               child: child,
             ),
           ),

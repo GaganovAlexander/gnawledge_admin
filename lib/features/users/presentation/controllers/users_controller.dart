@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gnawledge_admin/features/users/domain/entities/user.dart';
 import 'package:gnawledge_admin/features/users/domain/usecases/create_user.dart';
@@ -17,11 +18,18 @@ class UsersController extends StateNotifier<AsyncValue<List<AppUser>>> {
   final CreateUser createUser;
   final UpdateUser updateUser;
   final DeleteUser deleteUser;
+
   String? _query;
+  Timer? _debounce;
 
   void setQuery(String? q) {
-    _query = q?.trim().isEmpty ?? false ? null : q;
-    refresh();
+    const debounceDelay = 300;
+
+    final v = q?.trim();
+    _query = (v == null || v.isEmpty) ? null : v;
+
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: debounceDelay), refresh);
   }
 
   Future<void> refresh() async {
@@ -52,5 +60,11 @@ class UsersController extends StateNotifier<AsyncValue<List<AppUser>>> {
     await deleteUser(id);
     final list = [...?state.value]..removeWhere((e) => e.id == id);
     state = AsyncValue.data(list);
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
   }
 }

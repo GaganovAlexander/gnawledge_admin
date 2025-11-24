@@ -11,7 +11,7 @@ import 'package:gnawledge_admin/features/account/domain/usecases/update_profile.
 import 'package:gnawledge_admin/features/account/presentation/controllers/account_controller.dart';
 
 final accountDataSourceProvider = Provider<AccountDataSource>((ref) {
-  final env = ref.watch(envProvider);
+  final env = ref.read(envProvider);
   if (env.useMocks) {
     return AccountMockDataSource();
   } else {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
+import 'package:gnawledge_admin/shared/theme/colors.dart';
 
 class StatusBadge extends StatelessWidget {
   const StatusBadge({
@@ -11,13 +12,10 @@ class StatusBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    final colors = Theme.of(context).extension<AppColors>()!;
     final isActive = status.toLowerCase() == 'active';
-    final bg = isActive
-        ? Theme.of(context).colorScheme.primary
-        : Theme.of(context).colorScheme.surfaceContainerHighest;
-    final fg = isActive
-        ? Theme.of(context).colorScheme.onPrimary
-        : Theme.of(context).colorScheme.onSurfaceVariant;
+    final bg = isActive ? colors.brand : colors.avatarSurface;
+    final fg = isActive ? colors.onBrand : colors.textHigh;
     final label = isActive ? t.status_active : t.status_inactive;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),

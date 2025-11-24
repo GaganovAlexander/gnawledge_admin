@@ -25,7 +25,7 @@ import 'package:gnawledge_admin/features/users/domain/repositories/users_reposit
 import 'package:gnawledge_admin/features/users/infra/api/users_api.dart';
 
 final dioProvider = Provider<Dio>((ref) {
-  final env = ref.watch(envProvider);
+  final env = ref.read(envProvider);
   return Dio(BaseOptions(baseUrl: env.apiBase));
 });
 
@@ -34,7 +34,7 @@ final tokenStorageProvider = Provider<TokenStorage>((_) {
 });
 
 final authDataSourceProvider = Provider<AuthDataSource>((ref) {
-  final env = ref.watch(envProvider);
+  final env = ref.read(envProvider);
   if (env.useMocks) {
     return AuthMockDataSource();
   } else {
@@ -60,7 +60,7 @@ final requestPasswordResetProvider = Provider<RequestPasswordReset>(
 );
 
 final accountDataSourceProvider = Provider<AccountDataSource>((ref) {
-  final env = ref.watch(envProvider);
+  final env = ref.read(envProvider);
   if (env.useMocks) {
     return AccountMockDataSource();
   } else {
@@ -74,7 +74,7 @@ final accountRepositoryProvider = Provider<AccountRepository>(
 );
 
 final usersDataSourceProvider = Provider<UsersDataSource>((ref) {
-  final env = ref.watch(envProvider);
+  final env = ref.read(envProvider);
   if (env.useMocks) {
     return UsersMockDataSource();
   } else {

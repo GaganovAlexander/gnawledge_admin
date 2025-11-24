@@ -18,6 +18,7 @@ class SegmentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final colors = Theme.of(context).extension<AppColors>()!;
 
     return Expanded(
       child: Material(
@@ -27,14 +28,14 @@ class SegmentButton extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           splashFactory: NoSplash.splashFactory,
-          hoverColor: AppColors.hoverNeutral4,
+          hoverColor: colors.hoverNeutral4,
           child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(
                 label,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: selected ? cs.onSurface : AppColors.textHigh,
+                      color: selected ? cs.onSurface : colors.textHigh,
                       fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
                     ),
               ),

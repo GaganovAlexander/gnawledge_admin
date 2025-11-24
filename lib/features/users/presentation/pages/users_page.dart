@@ -5,6 +5,7 @@ import 'package:gnawledge_admin/features/users/presentation/dialogs/user_form_di
 import 'package:gnawledge_admin/features/users/presentation/providers.dart';
 import 'package:gnawledge_admin/features/users/presentation/widgets/status_badge.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
+import 'package:gnawledge_admin/shared/theme/colors.dart';
 import 'package:gnawledge_admin/shared/widgets/confirm_dialog.dart';
 
 class UsersPage extends ConsumerStatefulWidget {
@@ -43,7 +44,9 @@ class _UsersPageState extends ConsumerState<UsersPage> {
               FilledButton.icon(
                 onPressed: () async {
                   final u = await showDialog<AppUser>(
-                      context: context, builder: (_) => const UserFormDialog());
+                    context: context,
+                    builder: (_) => const UserFormDialog(),
+                  );
                   if (u != null) {
                     await ref.read(usersControllerProvider.notifier).add(u);
                   }
@@ -75,8 +78,10 @@ class _UsersTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
+
     return Material(
-      color: Theme.of(context).colorScheme.surface,
+      color: colors.surface,
       borderRadius: BorderRadius.circular(16),
       child: ListView.separated(
         itemCount: users.length + 1,
@@ -149,6 +154,7 @@ class _UsersTable extends StatelessWidget {
                         text: t.confirm_delete_user_text,
                         cancelText: t.common_cancel,
                         acceptText: t.common_delete,
+                        acceptBg: colors.dangerous,
                       );
 
                       if (!ok) return;
@@ -195,8 +201,9 @@ class _HeaderRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     final style = Theme.of(context).textTheme.bodyMedium!.copyWith(
-          color: Theme.of(context).hintColor,
+          color: colors.textMedium,
           fontWeight: FontWeight.w600,
         );
     return Padding(

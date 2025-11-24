@@ -7,10 +7,11 @@ class AccountAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppColors>()!;
     final initials = _calcInitials(name ?? '');
     return CircleAvatar(
       radius: 28,
-      backgroundColor: AppColors.avatarSurface,
+      backgroundColor: colors.avatarSurface,
       child: Text(
         initials,
         style: const TextStyle(fontWeight: FontWeight.w600),

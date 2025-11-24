@@ -45,12 +45,13 @@ class _AccountSettingsDialogState extends ConsumerState<AccountSettingsDialog>
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    final colors = Theme.of(context).extension<AppColors>()!;
     final radius = BorderRadius.circular(16);
 
     final me = ref.watch(accountControllerProvider).me;
 
     return Dialog(
-      backgroundColor: AppColors.surface,
+      backgroundColor: colors.surface,
       insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
       shape: RoundedRectangleBorder(borderRadius: radius),
       child: ConstrainedBox(
@@ -66,7 +67,7 @@ class _AccountSettingsDialogState extends ConsumerState<AccountSettingsDialog>
                 const SizedBox(height: 8),
                 Text(
                   '$e',
-                  style: const TextStyle(color: AppColors.error),
+                  style: TextStyle(color: colors.error),
                 ),
                 const SizedBox(height: 12),
                 FilledButton(
@@ -123,6 +124,8 @@ class _Content extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final colors = Theme.of(context).extension<AppColors>()!;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -146,7 +149,7 @@ class _Content extends ConsumerWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium
-                        ?.copyWith(color: AppColors.textMedium),
+                        ?.copyWith(color: colors.textMedium),
                   ),
                 ],
               ),
@@ -168,7 +171,7 @@ class _Content extends ConsumerWidget {
               style: Theme.of(context)
                   .textTheme
                   .titleMedium
-                  ?.copyWith(color: AppColors.textHigh),
+                  ?.copyWith(color: colors.textHigh),
             ),
           ],
         ),
@@ -244,6 +247,7 @@ class _ProfileTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final me = ref.watch(accountControllerProvider).me;
+    final colors = Theme.of(context).extension<AppColors>()!;
     final email = me.asData?.value.email ?? '';
 
     return Form(
@@ -270,7 +274,7 @@ class _ProfileTab extends ConsumerWidget {
               initialValue: email,
               decoration: _inputDecoration().copyWith(
                 filled: true,
-                fillColor: AppColors.readOnlyFill,
+                fillColor: colors.readOnlyFill,
               ),
             ),
             const SizedBox(height: 8),
@@ -279,7 +283,7 @@ class _ProfileTab extends ConsumerWidget {
               style: Theme.of(context)
                   .textTheme
                   .bodySmall
-                  ?.copyWith(color: AppColors.textMedium),
+                  ?.copyWith(color: colors.textMedium),
             ),
             const SizedBox(height: 20),
             SizedBox(

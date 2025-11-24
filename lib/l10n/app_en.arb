@@ -153,9 +153,9 @@
   "@role_manager": {},
   "role_user": "User",
   "@role_user": {},
-  "status_active": "active",
+  "status_active": "Active",
   "@status_active": {},
-  "status_inactive": "inactive",
+  "status_inactive": "Inactive",
   "@status_inactive": {},
   "confirm_delete_user_title": "Delete user?",
   "@confirm_delete_user_title": {},
@@ -164,5 +164,15 @@
   "common_cancel": "Cancel",
   "@common_cancel": {},
   "common_delete": "Delete",
-  "@common_delete": {}
+  "@common_delete": {},
+  "settings": "Settings",
+  "@settings": {},
+  "change_theme": "Change theme",
+  "@change_theme": {},
+  "theme_system": "System theme",
+  "@theme_system": {},
+  "theme_light": "Light theme",
+  "@theme_light": {},
+  "theme_dark": "Dark theme",
+  "@theme_dark": {}
 }

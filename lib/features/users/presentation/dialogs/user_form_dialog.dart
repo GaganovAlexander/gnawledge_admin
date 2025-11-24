@@ -36,6 +36,7 @@ class _UserFormDialogState extends State<UserFormDialog> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    const double fieldsGap = 10;
 
     return AlertDialog(
       title: Text(
@@ -53,17 +54,23 @@ class _UserFormDialogState extends State<UserFormDialog> {
                 decoration: InputDecoration(labelText: t.user_form_firstName),
                 validator: _r,
               ),
+              const SizedBox(
+                height: fieldsGap,
+              ),
               TextFormField(
                 controller: _last,
                 decoration: InputDecoration(labelText: t.user_form_lastName),
                 validator: _r,
+              ),
+              const SizedBox(
+                height: fieldsGap,
               ),
               TextFormField(
                 controller: _email,
                 decoration: InputDecoration(labelText: t.user_form_email),
                 validator: emailValidator(t),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: fieldsGap),
               DropdownButtonFormField(
                 initialValue: _role,
                 items: [t.role_admin, t.role_manager, t.role_user]
@@ -80,6 +87,9 @@ class _UserFormDialogState extends State<UserFormDialog> {
                     .toList(),
                 onChanged: (v) => setState(() => _role = v!),
                 decoration: InputDecoration(labelText: t.user_form_role),
+              ),
+              const SizedBox(
+                height: fieldsGap,
               ),
               DropdownButtonFormField(
                 initialValue: _status,
