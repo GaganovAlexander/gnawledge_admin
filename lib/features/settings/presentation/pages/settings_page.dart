@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gnawledge_admin/features/settings/presentation/widgets/language_switcher.dart';
-import 'package:gnawledge_admin/features/settings/presentation/widgets/theme_switcher.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
+import 'package:gnawledge_admin/shared/widgets/language_switcher.dart';
+import 'package:gnawledge_admin/shared/widgets/theme_switcher.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});

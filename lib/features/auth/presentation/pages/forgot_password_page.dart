@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gnawledge_admin/features/auth/presentation/pages/auth_shell.dart';
 import 'package:gnawledge_admin/features/auth/presentation/providers/forgot_password_providers.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
 import 'package:gnawledge_admin/shared/theme/colors.dart';
-import 'package:gnawledge_admin/shared/widgets/language_switcher.dart';
 import 'package:go_router/go_router.dart';
 
 class ForgotPasswordPage extends ConsumerStatefulWidget {
@@ -27,32 +27,11 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     final doneEmail = ref.watch(forgotEmailProvider);
-    final colors = Theme.of(context).extension<AppColors>()!;
 
-    return Scaffold(
-      backgroundColor: colors.pageBg,
-      body: Stack(
-        children: [
-          const Positioned(top: 16, right: 16, child: LanguageSwitcher()),
-          Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 520),
-              child: Card(
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: doneEmail == null
-                      ? _buildForm(context, t)
-                      : _buildConfirmation(context, doneEmail),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+    return AuthShell(
+      child: doneEmail == null
+          ? _buildForm(context, t)
+          : _buildConfirmation(context, doneEmail),
     );
   }
 

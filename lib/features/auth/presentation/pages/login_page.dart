@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gnawledge_admin/features/auth/presentation/pages/auth_shell.dart';
 import 'package:gnawledge_admin/features/auth/presentation/providers/auth_providers.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
 import 'package:gnawledge_admin/shared/theme/colors.dart';
 import 'package:gnawledge_admin/shared/validations/email.dart';
-import 'package:gnawledge_admin/shared/widgets/language_switcher.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -30,54 +30,34 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
-    final colors = Theme.of(context).extension<AppColors>()!;
-
-    return Scaffold(
-      backgroundColor: colors.pageBg,
-      body: Stack(
-        children: [
-          const Positioned(top: 16, right: 16, child: LanguageSwitcher()),
-          Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 520),
-              child: _buildCard(context, t),
-            ),
-          ),
-        ],
-      ),
+    return AuthShell(
+      child: _buildContent(context, t),
     );
   }
 
-  Widget _buildCard(BuildContext context, AppLocalizations t) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: 8),
-              _buildLogo(context),
-              const SizedBox(height: 16),
-              _buildTitle(context, t),
-              const SizedBox(height: 24),
-              _buildEmailLabel(context, t),
-              const SizedBox(height: 8),
-              _buildEmailField(t),
-              const SizedBox(height: 16),
-              _buildPasswordLabel(context, t),
-              const SizedBox(height: 8),
-              _buildPasswordField(t),
-              _buildForgotPassword(context, t),
-              const SizedBox(height: 4),
-              _buildSubmitButton(context, t),
-              const SizedBox(height: 8),
-            ],
-          ),
-        ),
+  Widget _buildContent(BuildContext context, AppLocalizations t) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 8),
+          _buildLogo(context),
+          const SizedBox(height: 16),
+          _buildTitle(context, t),
+          const SizedBox(height: 24),
+          _buildEmailLabel(context, t),
+          const SizedBox(height: 8),
+          _buildEmailField(t),
+          const SizedBox(height: 16),
+          _buildPasswordLabel(context, t),
+          const SizedBox(height: 8),
+          _buildPasswordField(t),
+          _buildForgotPassword(context, t),
+          const SizedBox(height: 4),
+          _buildSubmitButton(context, t),
+          const SizedBox(height: 8),
+        ],
       ),
     );
   }

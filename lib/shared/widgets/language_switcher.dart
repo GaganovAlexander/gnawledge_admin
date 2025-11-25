@@ -15,12 +15,15 @@ class LanguageSwitcher extends ConsumerWidget {
     return PopupMenuButton<Locale>(
       tooltip: t.change_language,
       onSelected: controller.setLocale,
-      itemBuilder: (context) => const [
-        PopupMenuItem(value: Locale('en'), child: Text('English')),
-        PopupMenuItem(value: Locale('ru'), child: Text('Русский')),
+      itemBuilder: (context) => [
+        PopupMenuItem(value: const Locale('en'), child: Text(t.lang_en)),
+        PopupMenuItem(value: const Locale('ru'), child: Text(t.lang_ru)),
       ],
       child: Chip(
-        label: Text(current.languageCode == 'ru' ? t.lang_ru : t.lang_en),
+        label: Text(
+          current.languageCode == 'ru' ? t.lang_ru : t.lang_en,
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       ),
     );
   }
