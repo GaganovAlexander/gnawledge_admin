@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gnawledge_admin/features/auth/presentation/pages/auth_shell.dart';
 import 'package:gnawledge_admin/features/auth/presentation/providers/auth_providers.dart';
@@ -36,28 +37,30 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   }
 
   Widget _buildContent(BuildContext context, AppLocalizations t) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 8),
-          _buildLogo(context),
-          const SizedBox(height: 16),
-          _buildTitle(context, t),
-          const SizedBox(height: 24),
-          _buildEmailLabel(context, t),
-          const SizedBox(height: 8),
-          _buildEmailField(t),
-          const SizedBox(height: 16),
-          _buildPasswordLabel(context, t),
-          const SizedBox(height: 8),
-          _buildPasswordField(t),
-          _buildForgotPassword(context, t),
-          const SizedBox(height: 4),
-          _buildSubmitButton(context, t),
-          const SizedBox(height: 8),
-        ],
+    return AutofillGroup(
+      child: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 8),
+            _buildLogo(context),
+            const SizedBox(height: 16),
+            _buildTitle(context, t),
+            const SizedBox(height: 24),
+            _buildEmailLabel(context, t),
+            const SizedBox(height: 8),
+            _buildEmailField(t),
+            const SizedBox(height: 16),
+            _buildPasswordLabel(context, t),
+            const SizedBox(height: 8),
+            _buildPasswordField(t),
+            _buildForgotPassword(context, t),
+            const SizedBox(height: 4),
+            _buildSubmitButton(context, t),
+            const SizedBox(height: 8),
+          ],
+        ),
       ),
     );
   }
@@ -120,6 +123,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       ),
       validator: emailValidator(t),
       textInputAction: TextInputAction.next,
+      autofillHints: const [
+        AutofillHints.username,
+        AutofillHints.email,
+      ],
     );
   }
 
@@ -147,6 +154,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       validator: (v) => (v == null || v.isEmpty) ? t.validation_password : null,
       textInputAction: TextInputAction.done,
       onFieldSubmitted: (_) => _onSubmit(context),
+      autofillHints: const [
+        AutofillHints.password,
+      ],
     );
   }
 
