@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gnawledge_admin/app/di.dart';
 import 'package:gnawledge_admin/l10n/app_localizations.dart';
 import 'package:gnawledge_admin/shared/theme/theme_mode_provider.dart';
 
@@ -24,20 +25,16 @@ class ThemeSwitcher extends ConsumerWidget {
 
     return PopupMenuButton<ThemeMode>(
       tooltip: t.change_theme,
-      onSelected: (v) => notifier.state = v,
+      onOpened: () => ref.read(isPopupOpenProvider.notifier).state = true,
+      onCanceled: () => ref.read(isPopupOpenProvider.notifier).state = false,
+      onSelected: (v) {
+        ref.read(isPopupOpenProvider.notifier).state = false;
+        notifier.state = v;
+      },
       itemBuilder: (context) => [
-        PopupMenuItem(
-          value: ThemeMode.system,
-          child: Text(t.theme_system),
-        ),
-        PopupMenuItem(
-          value: ThemeMode.light,
-          child: Text(t.theme_light),
-        ),
-        PopupMenuItem(
-          value: ThemeMode.dark,
-          child: Text(t.theme_dark),
-        ),
+        PopupMenuItem(value: ThemeMode.system, child: Text(t.theme_system)),
+        PopupMenuItem(value: ThemeMode.light, child: Text(t.theme_light)),
+        PopupMenuItem(value: ThemeMode.dark, child: Text(t.theme_dark)),
       ],
       child: Chip(
         label: Text(label),

@@ -46,3 +46,5 @@ app.*.map.json
 
 *.g.dart
 app_localizations*.dart
+dump_lib.py
+lib_dump.txt

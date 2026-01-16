@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gnawledge_admin/features/auth/presentation/pages/auth_shell.dart';
 import 'package:gnawledge_admin/features/auth/presentation/providers/auth_providers.dart';
@@ -31,9 +30,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
-    return AuthShell(
-      child: _buildContent(context, t),
-    );
+    return AuthShell(child: _buildContent(context, t));
   }
 
   Widget _buildContent(BuildContext context, AppLocalizations t) {
@@ -86,19 +83,17 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       children: [
         Text(
           t.login_title,
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium
-              ?.copyWith(fontWeight: FontWeight.w600),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 6),
         Text(
           t.login_subtitle,
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: colors.textMedium),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(color: colors.textMedium),
           textAlign: TextAlign.center,
         ),
       ],
@@ -123,18 +118,17 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       ),
       validator: emailValidator(t),
       textInputAction: TextInputAction.next,
-      autofillHints: const [
-        AutofillHints.username,
-        AutofillHints.email,
-      ],
+      autofillHints: const [AutofillHints.username, AutofillHints.email],
     );
   }
 
   Widget _buildPasswordLabel(BuildContext context, AppLocalizations t) {
     return Align(
       alignment: Alignment.centerLeft,
-      child:
-          Text(t.password_label, style: Theme.of(context).textTheme.labelLarge),
+      child: Text(
+        t.password_label,
+        style: Theme.of(context).textTheme.labelLarge,
+      ),
     );
   }
 
@@ -154,9 +148,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       validator: (v) => (v == null || v.isEmpty) ? t.validation_password : null,
       textInputAction: TextInputAction.done,
       onFieldSubmitted: (_) => _onSubmit(context),
-      autofillHints: const [
-        AutofillHints.password,
-      ],
+      autofillHints: const [AutofillHints.password],
     );
   }
 

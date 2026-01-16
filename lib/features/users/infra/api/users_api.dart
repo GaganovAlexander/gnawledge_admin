@@ -4,19 +4,19 @@ import 'package:retrofit/retrofit.dart';
 
 part 'users_api.g.dart';
 
-@RestApi()
+@RestApi(baseUrl: '/api')
 abstract class UsersApi {
   factory UsersApi(Dio dio, {String baseUrl}) = _UsersApi;
 
-  @GET('/users')
-  Future<List<UserDto>> list(@Query('q') String? query);
+  @GET('/admin/users')
+  Future<List<UserDto>> list();
 
   @POST('/users')
   Future<UserDto> create(@Body() UserDto body);
 
-  @PUT('/users/{id}')
-  Future<UserDto> update(@Path('id') int id, @Body() UserDto body);
+  @PATCH('/admin/update_user')
+  Future<UserDto> update(@Body() Map<String, dynamic> body);
 
-  @DELETE('/users/{id}')
-  Future<void> delete(@Path('id') int id);
+  @DELETE('/admin/delete_user/{email}')
+  Future<void> delete(@Path('email') String email);
 }

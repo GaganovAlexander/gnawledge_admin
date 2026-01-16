@@ -4,34 +4,30 @@ class UserDto {
   const UserDto({
     required this.id,
     required this.email,
-    this.fullName,
+    required this.fullName,
   });
-
-  factory UserDto.fromJson(Map<String, dynamic> json) => UserDto(
-        id: json['id']?.toString() ?? '',
-        email: json['email'] as String,
-        fullName: json['full_name'] as String?,
-      );
-
-  factory UserDto.fromEntity(UserEntity e) => UserDto(
-        id: e.id,
-        email: e.email,
-        fullName: e.fullName,
-      );
 
   final String id;
   final String email;
-  final String? fullName;
+  final String fullName;
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'email': email,
-        'full_name': fullName,
-      };
+  factory UserDto.fromJson(Map<String, dynamic> json) {
+    final parts = <String>[
+      json['surname'] as String? ?? '',
+      json['name'] as String? ?? '',
+      json['middle_name'] as String? ?? '',
+    ].where((e) => e.trim().isNotEmpty).toList(growable: false);
 
-  UserEntity toEntity() => UserEntity(
-        id: id,
-        email: email,
-        fullName: fullName,
-      );
+    final fullName = parts.join(' ');
+
+    final rawId = json['book_id'] ?? json['email'];
+
+    return UserDto(
+      id: rawId.toString(),
+      email: json['email'] as String? ?? '',
+      fullName: fullName,
+    );
+  }
+
+  UserEntity toEntity() => UserEntity(id: id, email: email, fullName: fullName);
 }

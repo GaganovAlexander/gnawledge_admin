@@ -1,25 +1,29 @@
-import 'package:dio/dio.dart';
 import 'package:gnawledge_admin/features/auth/data/sources/auth_data_source.dart';
 import 'package:gnawledge_admin/features/auth/domain/entities/auth_tokens.dart';
 import 'package:gnawledge_admin/features/auth/infra/api/auth_api.dart';
 
 class AuthRemoteDataSource implements AuthDataSource {
-  AuthRemoteDataSource(Dio dio) : _api = AuthApi(dio);
-  final AuthApi _api;
+  AuthRemoteDataSource(this.api);
+
+  final AuthApi api;
 
   @override
-  Future<AuthTokens> signIn(String email, String password) async {
-    final dto = await _api.signIn({'email': email, 'password': password});
-    return dto.toEntity();
+  Future<AuthTokens> signIn({
+    required String email,
+    required String password,
+  }) async {
+    final response = await api.signIn({'email': email, 'password': password});
+    return response.auth.toEntity();
   }
 
   @override
   Future<AuthTokens> refresh(String refreshToken) async {
-    final dto = await _api.refresh({'refresh_token': refreshToken});
-    return dto.toEntity();
+    final response = await api.refresh({'refresh_token': refreshToken});
+    return response.auth.toEntity();
   }
 
   @override
-  Future<void> requestPasswordReset(String email) =>
-      _api.requestPasswordReset({'email': email});
+  Future<void> requestPasswordReset(String email) async {
+    await api.resetPassword({'email': email});
+  }
 }

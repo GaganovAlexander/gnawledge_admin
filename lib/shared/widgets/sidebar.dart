@@ -17,6 +17,7 @@ class Sidebar extends ConsumerWidget {
     final cs = Theme.of(context).colorScheme;
     final t = AppLocalizations.of(context)!;
     final colors = Theme.of(context).extension<AppColors>()!;
+    final isPopupOpen = ref.watch(isPopupOpenProvider);
 
     Widget navItem({
       required IconData icon,
@@ -78,68 +79,68 @@ class Sidebar extends ConsumerWidget {
       context.go('/login');
     }
 
-    return Container(
-      width: 240,
-      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        border: Border(
-          right: BorderSide(
-            color: colors.textHigh.withValues(alpha: .06),
+    return AbsorbPointer(
+      absorbing: isPopupOpen,
+      child: Container(
+        width: 240,
+        padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          border: Border(
+            right: BorderSide(color: colors.textHigh.withValues(alpha: .06)),
           ),
         ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 6, bottom: 16),
-            child: Text(
-              t.brand_title,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium
-                  ?.copyWith(fontWeight: FontWeight.w700),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 6, bottom: 16),
+              child: Text(
+                t.brand_title,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
             ),
-          ),
-          const SizedBox(height: 6),
-          navItem(
-            icon: Icons.dashboard_outlined,
-            label: t.nav_dashboard,
-            path: '/dashboard',
-          ),
-          const SizedBox(height: 4),
-          navItem(
-            icon: Icons.group_outlined,
-            label: t.nav_users,
-            path: '/users',
-          ),
-          const SizedBox(height: 4),
-          navItem(
-            icon: Icons.settings_outlined,
-            label: t.nav_settings,
-            path: '/settings',
-          ),
-          const Spacer(),
-          TextButton.icon(
-            onPressed: () async {
-              await showDialog<bool>(
-                context: context,
-                barrierColor: colors.textHigh.withValues(alpha: .3),
-                builder: (_) => const AccountSettingsDialog(),
-              );
-            },
-            icon: const Icon(Icons.account_circle_outlined, size: 18),
-            label: Text(t.my_account),
-          ),
-          const SizedBox(height: 4),
-          TextButton.icon(
-            style: TextButton.styleFrom(foregroundColor: cs.error),
-            onPressed: logout,
-            icon: const Icon(Icons.logout, size: 18),
-            label: Text(t.logout),
-          ),
-        ],
+            const SizedBox(height: 6),
+            navItem(
+              icon: Icons.dashboard_outlined,
+              label: t.nav_dashboard,
+              path: '/dashboard',
+            ),
+            const SizedBox(height: 4),
+            navItem(
+              icon: Icons.group_outlined,
+              label: t.nav_users,
+              path: '/users',
+            ),
+            const SizedBox(height: 4),
+            navItem(
+              icon: Icons.settings_outlined,
+              label: t.nav_settings,
+              path: '/settings',
+            ),
+            const Spacer(),
+            TextButton.icon(
+              onPressed: () async {
+                await showDialog<bool>(
+                  context: context,
+                  barrierColor: colors.textHigh.withValues(alpha: .3),
+                  builder: (_) => const AccountSettingsDialog(),
+                );
+              },
+              icon: const Icon(Icons.account_circle_outlined, size: 18),
+              label: Text(t.my_account),
+            ),
+            const SizedBox(height: 4),
+            TextButton.icon(
+              style: TextButton.styleFrom(foregroundColor: cs.error),
+              onPressed: logout,
+              icon: const Icon(Icons.logout, size: 18),
+              label: Text(t.logout),
+            ),
+          ],
+        ),
       ),
     );
   }

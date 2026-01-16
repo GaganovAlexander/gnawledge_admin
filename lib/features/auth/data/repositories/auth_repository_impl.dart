@@ -5,10 +5,8 @@ import 'package:gnawledge_admin/features/auth/domain/entities/auth_tokens.dart';
 import 'package:gnawledge_admin/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl({
-    required AuthDataSource dataSource,
-    required this.tokens,
-  }) : _ds = dataSource;
+  AuthRepositoryImpl({required AuthDataSource dataSource, required this.tokens})
+    : _ds = dataSource;
 
   final AuthDataSource _ds;
   final TokenStorage tokens;
@@ -18,7 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String email,
     required String password,
   }) async {
-    final t = await _ds.signIn(email, password);
+    final t = await _ds.signIn(email: email, password: password);
     await tokens.save(access: t.access, refresh: t.refresh);
     return t;
   }

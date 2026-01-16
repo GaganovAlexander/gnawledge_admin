@@ -4,11 +4,11 @@ import 'package:retrofit/retrofit.dart';
 
 part 'account_api.g.dart';
 
-@RestApi(baseUrl: '/')
+@RestApi(baseUrl: '/api')
 abstract class AccountApi {
   factory AccountApi(Dio dio, {String baseUrl}) = _AccountApi;
 
-  @GET('/account/me')
+  @GET('/me/profile')
   Future<UserDto> getMe();
 
   @PATCH('/account/profile')

@@ -7,7 +7,10 @@ class AuthMockDataSource implements AuthDataSource {
   static const _validPassword = 'admin123';
 
   @override
-  Future<AuthTokens> signIn(String email, String password) async {
+  Future<AuthTokens> signIn({
+    required String email,
+    required String password,
+  }) async {
     await Future<void>.delayed(const Duration(milliseconds: 400));
     if (email.isEmpty || password.isEmpty) {
       throw Exception('Email and password are required');

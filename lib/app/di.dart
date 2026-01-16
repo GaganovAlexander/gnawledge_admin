@@ -17,6 +17,7 @@ import 'package:gnawledge_admin/features/auth/domain/repositories/auth_repositor
 import 'package:gnawledge_admin/features/auth/domain/usecases/get_tokens.dart';
 import 'package:gnawledge_admin/features/auth/domain/usecases/request_password_reset.dart';
 import 'package:gnawledge_admin/features/auth/domain/usecases/sign_in.dart';
+import 'package:gnawledge_admin/features/auth/infra/api/auth_api.dart';
 import 'package:gnawledge_admin/features/users/data/repositories/users_repository_impl.dart';
 import 'package:gnawledge_admin/features/users/data/sources/users_data_source.dart';
 import 'package:gnawledge_admin/features/users/data/sources/users_mock_ds.dart';
@@ -35,11 +36,13 @@ final tokenStorageProvider = Provider<TokenStorage>((_) {
 
 final authDataSourceProvider = Provider<AuthDataSource>((ref) {
   final env = ref.read(envProvider);
+
   if (env.useMocks) {
     return AuthMockDataSource();
   } else {
     final dio = ref.watch(dioProvider);
-    return AuthRemoteDataSource(dio);
+    final api = AuthApi(dio);
+    return AuthRemoteDataSource(api);
   }
 });
 
@@ -50,10 +53,12 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
   );
 });
 
-final signInUseCaseProvider =
-    Provider<SignIn>((ref) => SignIn(ref.watch(authRepositoryProvider)));
-final getTokensUseCaseProvider =
-    Provider<GetTokens>((ref) => GetTokens(ref.watch(authRepositoryProvider)));
+final signInUseCaseProvider = Provider<SignIn>(
+  (ref) => SignIn(ref.watch(authRepositoryProvider)),
+);
+final getTokensUseCaseProvider = Provider<GetTokens>(
+  (ref) => GetTokens(ref.watch(authRepositoryProvider)),
+);
 
 final requestPasswordResetProvider = Provider<RequestPasswordReset>(
   (ref) => RequestPasswordReset(ref.watch(authRepositoryProvider)),
@@ -86,3 +91,5 @@ final usersDataSourceProvider = Provider<UsersDataSource>((ref) {
 final usersRepositoryProvider = Provider<UsersRepository>(
   (ref) => UsersRepositoryImpl(ref.watch(usersDataSourceProvider)),
 );
+
+final isPopupOpenProvider = StateProvider<bool>((ref) => false);
